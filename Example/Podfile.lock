@@ -1,0 +1,16 @@
+PODS:
+  - FFEventBus (0.1.0)
+
+DEPENDENCIES:
+  - FFEventBus (from `../`)
+
+EXTERNAL SOURCES:
+  FFEventBus:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FFEventBus: 0ac8a060b5e7fd0b5cd6970c2270fbaeff19f5e3
+
+PODFILE CHECKSUM: 99396f4c044bc2dbd53e0808e2f7710257481824
+
+COCOAPODS: 1.10.1
