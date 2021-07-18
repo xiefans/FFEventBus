@@ -3,25 +3,54 @@ import FFEventBus
 
 class Tests: XCTestCase {
     
+    var bus: FFEventBus!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        bus  = FFEventBus(name: "test")
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testExcuteOrder() {
+        var string = ""
+        bus.begin { then, end, params in
+            string += "a"
+            then(params)
+        }
+        
+        bus.then { then, end, params in
+            string += "b"
+            then(params)
+        }
+        
+        bus.then { then, end, params in
+            string += "c"
+            then(params)
+        }
+        
+        bus.end { params in
+            XCTAssert(string == "abc", "excute order is error")
+        }
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
+    func testExcuteSkipOrder() {
+        var string = ""
+        bus.begin { then, end, params in
+            string += "a"
+            then(params)
+        }
+        
+        bus.then { then, end, params in
+            string += "b"
+            end(params)
+        }
+        
+        bus.then { then, end, params in
+            string += "c"
+            then(params)
+        }
+        
+        bus.end { params in
+            XCTAssert(string == "ab", "excute order is error")
         }
     }
     
