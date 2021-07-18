@@ -27,3 +27,4 @@ xie.fan, xie.fan@gloritysolutions.com
 ## License
 
 FFEventBus is available under the MIT license. See the LICENSE file for more info.
+=======
